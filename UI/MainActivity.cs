@@ -24,7 +24,9 @@ namespace UI
             base.OnCreate(savedInstanceState);
             Log.Debug(Tag, "Reading");
             ProductSource.ReadFromFile(fileName);
-            
+
+           
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -20,6 +21,8 @@ namespace UI
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
             var layout = inflater.Inflate(Resource.Layout.MainFragment, container, false);
+            var lineralLayout = layout.FindViewById<LinearLayout>(Resource.Id.lineralLayoutFragment);
+
 
             ListView list = layout.FindViewById<ListView>(Resource.Id.list);
 
@@ -31,6 +34,17 @@ namespace UI
                 var item = (Product) list.GetItemAtPosition(list.CheckedItemPosition);
                 ((MainActivity)Activity).OnSelect(item?.Id);
             };
+
+            var imageButton = new Button(inflater.Context);
+            imageButton.Text = "some button text inside dynamically button image";
+            imageButton.SetBackgroundResource(Resource.Drawable.ic_launcher_round);
+
+            imageButton.Click += (object sender, EventArgs e) =>
+            {
+                Toast.MakeText(inflater.Context, "some image button text", ToastLength.Long).Show();
+            };
+
+            lineralLayout.AddView(imageButton);
 
             return layout;
         }
