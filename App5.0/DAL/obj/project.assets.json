@@ -361,20 +361,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ioreh\\.nuget\\packages\\": {}
+    "C:\\Users\\Illia_Arakhouski\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ioreh\\Dropbox\\labs\\4 course\\RPMU-master\\App5.0\\DAL\\DAL.csproj",
+      "projectUniqueName": "D:\\xamarin-application-product-store\\App5.0\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\ioreh\\Dropbox\\labs\\4 course\\RPMU-master\\App5.0\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\ioreh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ioreh\\Dropbox\\labs\\4 course\\RPMU-master\\App5.0\\DAL\\obj\\",
+      "projectPath": "D:\\xamarin-application-product-store\\App5.0\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\Illia_Arakhouski\\.nuget\\packages\\",
+      "outputPath": "D:\\xamarin-application-product-store\\App5.0\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\ioreh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Illia_Arakhouski\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
