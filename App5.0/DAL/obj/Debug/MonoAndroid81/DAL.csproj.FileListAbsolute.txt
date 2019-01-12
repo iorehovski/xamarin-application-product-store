@@ -1,0 +1,15 @@
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\bin\Debug\DAL.dll
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\bin\Debug\DAL.pdb
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\bin\Debug\DAL.DAL.apk
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\bin\Debug\DAL.DAL-Signed.apk
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\DAL.csprojAssemblyReference.cache
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\res.flag
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\DAL.csproj.CoreCompileInputs.cache
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\DAL.dll
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\DAL.pdb
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\android\bin\DAL.DAL.apk
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\res\values\strings.xml
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\R.cs.flag
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\R.txt
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\obj\Debug\MonoAndroid81\uploadflags.txt
+C:\Users\ioreh\Dropbox\labs\4 course\RPMU-master\App4.0\DAL\bin\Debug\DAL.dll.mdb
