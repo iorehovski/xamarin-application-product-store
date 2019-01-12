@@ -15,9 +15,11 @@ namespace UI
         {
             var view = LayoutInflater.From(context).Inflate(Resource.Layout.LeftMenuLayout, parrent, true);
 
-            var definedName = view.FindViewById<TextView>(Resource.Id.DefinedNameItem);
-            var definedNameAndPrice = view.FindViewById<TextView>(Resource.Id.DefinedNameAndPriceItem);
-            var definedShelfLife = view.FindViewById<TextView>(Resource.Id.DefinedShelfLifeItem);
+            var definedName = view.FindViewById<Button>(Resource.Id.button_name);
+            var definedNameAndPrice = view.FindViewById<Button>(Resource.Id.button_name_price);
+            var definedShelfLife = view.FindViewById<Button>(Resource.Id.button_shelf_life);
+            var definedProducer = view.FindViewById<Button>(Resource.Id.button_producer);
+            var definedOnStock = view.FindViewById<Button>(Resource.Id.button_onStock);
 
             definedName.Click += (sender, args) =>
             {
@@ -36,6 +38,20 @@ namespace UI
             definedShelfLife.Click += (sender, args) =>
             {
                 var intent = new Intent($"{MainFragment.IntentHeader}.DefinedShelfLife");
+                intent.AddFlags(ActivityFlags.NewTask);
+                context.StartActivity(intent);
+            };
+
+            definedProducer.Click += (sender, args) =>
+            {
+                var intent = new Intent($"{MainFragment.IntentHeader}.DefinedProducer");
+                intent.AddFlags(ActivityFlags.NewTask);
+                context.StartActivity(intent);
+            };
+
+            definedOnStock.Click += (sender, args) =>
+            {
+                var intent = new Intent($"{MainFragment.IntentHeader}.DefinedOnStock");
                 intent.AddFlags(ActivityFlags.NewTask);
                 context.StartActivity(intent);
             };

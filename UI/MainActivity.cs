@@ -15,29 +15,17 @@ namespace UI
     {
         private const string Tag = "Main";
 
-        private static string fileName =
-            Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "fileName.xml");
+        public static string FileName { get; } =
+            Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "fileName.db");
         private int? chosedId;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Log.Debug(Tag, "Reading");
-            ProductSource.ReadFromFile(fileName);
-
-           
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            ProductSource.WriteToFile(fileName);
-
-            Log.Debug(Tag, "Saving");
         }
 
         protected override void OnResume()
@@ -78,7 +66,10 @@ namespace UI
                 case Resource.Id.delete:
                     if (chosedId != null)
                     {
-                        ProductService.Remove(chosedId.Value);
+                        using (var _service = new ProductService(FileName))
+                        {
+                            _service.Remove(chosedId.Value);
+                        }
                         MainFragment.RenewValues();
                     }
 

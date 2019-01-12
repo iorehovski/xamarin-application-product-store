@@ -28,7 +28,7 @@ namespace UI
         EditText price;
         EditText shelfLife;
         EditText count;
-
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -54,13 +54,17 @@ namespace UI
             if (isEdit)
             {
                 var valueId = Intent.GetIntExtra(ValueKey, 0);
-                value = ProductService.GetById(valueId);
 
-                producer.Text = value.Producer.ToString();
-                price.Text = value.Price.ToString();
-                name.Text = value.Name;
-                shelfLife.Text = value.ShelfLife.ToString();
-                count.Text = value.Count.ToString();
+                using (var _service = new ProductService(MainActivity.FileName))
+                {
+                    value = _service.GetById(valueId);
+
+                    producer.Text = value.Producer.ToString();
+                    price.Text = value.Price.ToString();
+                    name.Text = value.Name;
+                    shelfLife.Text = value.ShelfLife.ToString();
+                    count.Text = value.Count.ToString();
+                }
             }
             else
             {
@@ -76,9 +80,17 @@ namespace UI
                 value.ShelfLife = shelfLife.Text == "" ? 0 : int.Parse(shelfLife.Text);
                 value.Count = count.Text == "" ? 0 : int.Parse(count.Text);
 
-                if (!isEdit)
+                using (var _service = new ProductService(MainActivity.FileName))
                 {
-                    ProductService.Insert(value);
+                    
+                    if (!isEdit)
+                    {
+                        _service.Insert(value);
+                    }
+                    else
+                    {
+                        _service.Update(value);
+                    }
                 }
 
                 Finish();
@@ -126,7 +138,11 @@ namespace UI
                 case Resource.Id.delete:
                     if (chosedId != null)
                     {
-                        ProductService.Remove(chosedId.Value);
+                        using (var _service = new ProductService(MainActivity.FileName))
+                        {
+                            _service.Remove(chosedId.Value);
+                        }
+                        
                         MainFragment.RenewValues();
                     }
 

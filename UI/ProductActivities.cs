@@ -5,6 +5,7 @@ using Android.Widget;
 using BLL;
 using System;
 
+
 namespace UI
 {
     [Activity(Label = "DefinedName")]
@@ -24,7 +25,10 @@ namespace UI
             {
                 var name = input.Text;
 
-                text.Text = string.Join("\n", ProductService.GetItemsByName(name));
+                using(var _service = new ProductService(MainActivity.FileName))
+                {
+                    text.Text = string.Join("\n", _service.GetItemsByName(name));
+                }
             };
         }
     }
@@ -47,7 +51,10 @@ namespace UI
             {
                 var name = inputName.Text;
                 var price = int.Parse(inputPrice.Text);
-                text.Text = string.Join("\n", ProductService.GetItemsByName(name, price));
+                using (var _service = new ProductService(MainActivity.FileName))
+                {
+                    text.Text = string.Join("\n", _service.GetItemsByName(name, price));
+                }
             };
         }
     }
@@ -68,9 +75,61 @@ namespace UI
             button.Click += (object sender, EventArgs e) =>
             {
                 var days = int.Parse(input.Text);
-
-                text.Text = string.Join("\n", ProductService.GetItemsByShelfLife(days));
+                using (var _service = new ProductService(MainActivity.FileName))
+                {
+                    text.Text = string.Join("\n", _service.GetItemsByShelfLife(days));
+                }
             };
         }
     }
+
+    [Activity(Label = "DefinedProducer")]
+    [IntentFilter(new[] { MainFragment.IntentHeader + ".DefinedProducer" }, Categories = new[] { Intent.CategoryDefault })]
+    public class DefinedProducer : Activity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.DefinedNameLayout);
+            // Create your application here
+            TextView text = FindViewById<TextView>(Resource.Id.text);
+            Button button = FindViewById<Button>(Resource.Id.button);
+            EditText input = FindViewById<EditText>(Resource.Id.input);
+
+            button.Click += (object sender, EventArgs e) =>
+            {
+                var name = input.Text;
+                using (var _service = new ProductService(MainActivity.FileName))
+                {
+                    text.Text = string.Join("\n", _service.GetItemsByProducer(name));
+                }
+                
+            };
+        }
+    }
+
+    [Activity(Label = "DefinedOnStock")]
+    [IntentFilter(new[] { MainFragment.IntentHeader + ".DefinedOnStock" }, Categories = new[] { Intent.CategoryDefault })]
+    public class DefinedOnStock : Activity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.DefinedNameLayout);
+            // Create your application here
+            TextView text = FindViewById<TextView>(Resource.Id.text);
+            Button button = FindViewById<Button>(Resource.Id.button);
+            EditText input = FindViewById<EditText>(Resource.Id.input);
+
+            button.Click += (object sender, EventArgs e) =>
+            {
+                var name = input.Text;
+                using (var _service = new ProductService(MainActivity.FileName))
+                {
+                    text.Text = string.Join("\n", _service.GetItemsOnStock());
+                }
+            };
+        }
+    }
+
 }

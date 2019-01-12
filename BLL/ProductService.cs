@@ -1,55 +1,80 @@
-﻿using DAL;
+﻿using System;
+using DAL;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace BLL
 {
-    public static class ProductService
+    public class ProductService: IDisposable
     {
-        public static List<Product> GetAll()
+        private readonly ProductContext _context;
+
+        public ProductService(string dbPath)
         {
-            return ProductSource.Items;
+            _context = new ProductContext(dbPath);
+            _context.Database.EnsureCreated();
         }
 
-        public static IEnumerable<Product> GetItemsByName(string name)
+        public List<Product> GetAll()
         {
-            return ProductSource.Items.Where(x => x.Name == name);
+            return _context.Products.ToList();
         }
 
-        public static IEnumerable<Product> GetItemsByName(string name, int price)
+        public IEnumerable<Product> GetItemsByName(string name)
         {
-            return ProductSource.Items.Where(x => x.Name == name && x.Price <= price);
+            return _context.Products.Where(x => x.Name == name);
         }
 
-        public static IEnumerable<Product> GetItemsByShelfLife(int shelfLife)
+        public IEnumerable<Product> GetItemsByName(string name, int price)
         {
-            return ProductSource.Items.Where(x => x.ShelfLife > shelfLife);
+            return _context.Products.Where(x => x.Name == name && x.Price <= price);
+        }
+
+        public IEnumerable<Product> GetItemsByProducer(string name)
+        {
+            return _context.Products.Where(x => x.Producer == name);
+        }
+
+        public IEnumerable<Product> GetItemsByShelfLife(int shelfLife)
+        {
+            return _context.Products.Where(x => x.ShelfLife > shelfLife);
+        }
+
+        public IEnumerable<Product> GetItemsOnStock()
+        {
+            return _context.Products.Where(x => x.OnStock == true);
         }
 
 
-        public static void Insert(Product item)
+        public void Insert(Product item)
         {
-            var last = ProductSource.Items.LastOrDefault();
-            if (last != null)
-            {
-                item.Id = last.Id + 1;
-            }
-            else
-            {
-                item.Id = 0;
-            }
-            ProductSource.Items.Add(item);
+            item.OnStock = true;
+
+            _context.Products.Add(item);
+            _context.SaveChanges();
         }
 
-        public static void Remove(int id)
+        public void Update(Product item)
         {
-            var item = ProductSource.Items.FirstOrDefault(x => x.Id == id);
-            ProductSource.Items.Remove(item);
+            _context.Products.Update(item);
+            _context.SaveChanges();
         }
 
-        public static Product GetById(int id)
+        public void Remove(int id)
         {
-            return ProductSource.Items.FirstOrDefault(x => x.Id == id);
+            var item = _context.Products.FirstOrDefault(x => x.Id == id);
+            _context.Products.Remove(item);
+            _context.SaveChanges();
+        }
+
+        public Product GetById(int id)
+        {
+            return _context.Products.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
 
     }

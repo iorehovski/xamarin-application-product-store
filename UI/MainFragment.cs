@@ -26,7 +26,14 @@ namespace UI
 
             ListView list = layout.FindViewById<ListView>(Resource.Id.list);
 
-            adapter = new ArrayAdapter<Product>(inflater.Context, Resource.Layout.listItem, ProductService.GetAll());
+            using (var _service = new ProductService(MainActivity.FileName))
+            {
+                adapter = new ArrayAdapter<Product>(inflater.Context, 
+                    Resource.Layout.listItem,
+                    _service.GetAll());
+            }
+
+            
             list.Adapter = adapter;
 
             list.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
@@ -52,7 +59,11 @@ namespace UI
         public static void RenewValues()
         {
             adapter.Clear();
-            adapter.AddAll(ProductService.GetAll());
+            using (var _service = new ProductService(MainActivity.FileName))
+            {
+                adapter.AddAll(_service.GetAll());
+            }
+            
             adapter.NotifyDataSetChanged();
         }
 

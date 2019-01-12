@@ -12,6 +12,8 @@ namespace DAL
         public int ShelfLife { get; set; }
         public int Count { get; set; }
 
+        public bool OnStock { get; set; }
+
         public override string ToString()
         {
             var result = new StringBuilder();
